@@ -1,0 +1,125 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect to Shopify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #5c6ac4;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #4959bd;
+        }
+        .error {
+            color: #e74c3c;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fdf0f0;
+            border-left: 4px solid #e74c3c;
+            margin-bottom: 15px;
+        }
+        .info {
+            color: #3498db;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f7fd;
+            border-left: 4px solid #3498db;
+            margin-bottom: 15px;
+        }
+        .debug-info {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+        }
+        .helper-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Connect Your Shopify Store</h1>
+        
+        {% if error %}
+        <div class="error">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+        
+        <div class="info">
+            <strong>How to connect:</strong> Enter your Shopify store name or full domain below. You'll be redirected to Shopify to authorize this application.
+        </div>
+        
+        <form action="/connect" method="POST">
+            <div class="form-group">
+                <label for="shop">Your Shopify Store:</label>
+                <input type="text" id="shop" name="shop" placeholder="your-store" required>
+                <div class="helper-text">
+                    You can enter just your store name (e.g., "your-store") or the full domain (e.g., "your-store.myshopify.com")
+                </div>
+            </div>
+            
+            <button type="submit" class="button">Connect to Shopify</button>
+        </form>
+        
+        <p>
+            <a href="/stores">View connected stores</a>
+        </p>
+        
+        {% if api_key %}
+            {% if api_key != 'None' and api_key != '' %}
+            <div class="debug-info">
+                <p><strong>Debug:</strong> API Key is configured ✓</p>
+            </div>
+            {% else %}
+            <div class="error">
+                <p><strong>Configuration Error:</strong> API Key is not set. Please check your .env file.</p>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

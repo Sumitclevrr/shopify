@@ -12,7 +12,7 @@ app.config.update(SESSION_COOKIE_SECURE=False, SESSION_COOKIE_SAMESITE="Lax")
 
 SHOPIFY_API_KEY      = "692be111e9acf211d796185e2a5e41c1"
 SHOPIFY_API_SECRET   = "54c1beb5026f091063437b3280e101c4"
-SHOPIFY_REDIRECT_URI = "https://clevrrshopifyconnect-haenfrd9fdh2gzdg.centralindia-01.azurewebsites.net/shopify/callback"
+SHOPIFY_REDIRECT_URI = "https://shopify-9yg2.onrender.com/shopify/callback"
 SCOPES = ",".join([
     "read_products","read_orders","read_customers","read_all_orders",
     "read_assigned_fulfillment_orders","read_merchant_managed_fulfillment_orders",

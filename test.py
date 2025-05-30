@@ -10,8 +10,8 @@ app = Flask(__name__)
 app.secret_key = "c18e6fbc3a24d9f65a9b0e1a3b7d4c5e2a1f9d7b8e3c4f6d7a8b9c0d1e2f3a4b"
 app.config.update(SESSION_COOKIE_SECURE=False, SESSION_COOKIE_SAMESITE="Lax")
 
-SHOPIFY_API_KEY      = "692be111e9acf211d796185e2a5e41c1"
-SHOPIFY_API_SECRET   = "54c1beb5026f091063437b3280e101c4"
+SHOPIFY_API_KEY      = os.getenv("SHOPIFY_API_KEY")
+SHOPIFY_API_SECRET   = os.getenv("SHOPIFY_API_SECRET")
 SHOPIFY_REDIRECT_URI = "https://shopify-9yg2.onrender.com/shopify/callback"
 SCOPES = ",".join([
     "read_products","read_orders","read_customers","read_all_orders",
@@ -20,10 +20,10 @@ SCOPES = ",".join([
     "read_discounts",
 ])
 
-SMTP_HOST   = "smtp.gmail.com"
+SMTP_HOST  = os.getenv("SMTP_HOST")
 SMTP_PORT   = 587
-SMTP_USER   = "sumitjha482@gmail.com"
-SMTP_PASS   = "eshj gleo jntw njpr"
+SMTP_USER  = os.getenv("SMTP_USER")      # e.g. your-account@gmail.com
+SMTP_PASS  = os.getenv("SMTP_PASS")
 FROM_EMAIL  = "dev@getclevrr.com"
 TO_EMAIL    = "engineering@getclevrr.com"
 
